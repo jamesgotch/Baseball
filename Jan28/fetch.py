@@ -6,11 +6,12 @@ cursor = conn.cursor()
 query = """
     SELECT playerID,yearID,teamID,HR
     FROM batting
-    WHERE yearID = 1976
+    WHERE yearID = 1976 and teamID = 'PHI' and HR != 0
+    ORDER BY HR desc
 """
 cursor.execute(query)
 records = cursor.fetchall()
 conn.close()
 
 records_df = pd.DataFrame(records, columns = ['playerID','yearID','teamID','HR'])
-print(records_df)
+print(records_df) 
