@@ -29,7 +29,6 @@ def f(player):
     cursor.execute(query,[player])
     records = cursor.fetchall()
     conn.close()
-    #return f"Player {player} hit {records[0][0]} home runs in 1976 for the Philadelphia Phillies."
     return records[0][0]
 
 print(f('schmimi01'))
@@ -40,4 +39,9 @@ print(f('schmimi01'))
 #    title="1976 Philadelphia Phillies Home Runs",
 #    description="Fetches and displays home runs for a selected 1976 Philadelphia Phillies player.")
 
-#    iface.launch()
+with gr.Blocks() as iface:
+    playerID = gr.Dropdown(choices = fetch_phillies(), interactive = True)
+    homeruns = gr.Number()
+    playerID.change(fn = f, inputs = playerID, outputs = homeruns)
+
+iface.launch()
