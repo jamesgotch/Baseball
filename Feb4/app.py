@@ -17,4 +17,4 @@ conn.close()
 
 records_df = pd.DataFrame(records, columns=['yearID','totalHR'])
 
-print(records_df)
+print(records_df) 
